@@ -1,0 +1,15 @@
+Projects:
+- daily info (include REMEMBER and TODO)
+- calendar
+- codebits
+- exchange rate
+- watch user-inputed stock price history
+
+Suite:
+- simple http wrapper
+- central location for all apps
+- simple data layer (JSON <--> Object)
+- GUI loop
+- install and persist utility (drive)
+- template for easier planning?
+- theme selection and editor (pdata/ksuite/themes)

@@ -1,0 +1,8 @@
+{
+  "weather": {
+    "key": "4cb795818fcbf849f23882cc0947031b",
+    "host": "api.openweathermap.org",
+    "url": "/data/2.5/weather?id=[cityId]&APPID=[key]",
+    "cityId": "5931800"
+  }
+}
