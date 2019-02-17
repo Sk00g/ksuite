@@ -4,6 +4,7 @@ Projects:
 - codebits
 - exchange rate
 - watch user-inputed stock price history
+- text RPG?
 
 Suite:
 - simple http wrapper

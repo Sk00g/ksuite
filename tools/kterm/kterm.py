@@ -1,19 +1,11 @@
 import sys
 import tty
 import fcntl, termios, struct
+from . import TColor
+from .term_control import Control
 
 
-class TColor:
-    Black = 232
-    Red = 1
-    Green = 2
-    Yellow = 3
-    Blue = 4
-    Magenta = 5
-    Cyan = 6
-    White = 7
-    HackerGreen = 40
-
+CONTROL_MARGIN = 2
 
 class KTerm:
     def __init__(self):
@@ -22,6 +14,25 @@ class KTerm:
 
         self._original_settings = termios.tcgetattr(sys.stdin.fileno())
         self._default_foreground, self._default_background = TColor.White, TColor.Black
+
+        self.control_list = []
+
+        # Assume singleton, and set host for all future created controls
+        Control.set_host(self)
+
+    # --- PUBLIC ---
+    def render(self):
+        self.clear_screen()
+        self.reset_color()
+
+        for ctrl in self.control_list:
+            self.set_cursor(ctrl.start[0], ctrl.start[1])
+            ctrl.render()
+
+        self.reset_color()
+
+    def receive_input(self, char):
+        pass
 
     def initialize(self, default_foreground, default_background):
         self._default_foreground = default_foreground
@@ -35,6 +46,15 @@ class KTerm:
         self._send('39m')
         self._send('49m')
         self.clear_screen()
+
+    def show_cursor(self, flag):
+        if flag:
+            self._send('?25h')
+        else:
+            self._send('?25l')
+
+    # --- PRIVATE ---
+
 
     def _send(self, data):
         sys.stdout.write('\u001b[' + data)
@@ -81,57 +101,3 @@ class KTerm:
     def reset_color(self):
         self._send('0m')
         self.set_color(self._default_foreground, self._default_background)
-
-    def print_bullets(self, point_list, symbol="*", prespace='  ', tab_matched=True):
-        # Find the farthest matching tab stop
-        longest_key = 0
-        for point in point_list:
-            if 'key' in point and len(point['key']) > longest_key:
-                longest_key = len(point['key'])
-
-        for point in point_list:
-            key = point['key'] if 'key' in point else None
-            self.reset_color()
-
-            if prespace:
-                self.print(prespace)
-
-            if key:
-                self.print("%s %s: " % (symbol, key))
-
-            if tab_matched and key:
-                self.print(''.join([' '] * (longest_key - len(key) + 1)))
-
-            if 'bold' in point and point['bold']:
-                self.set_color(bold=True)
-
-            self.print_line(str(point['value']))
-
-    def print_header(self, text):
-        self.reset_color()
-        self.print(''.join(['-'] * 5))
-
-        self.set_color(foreground=TColor.Cyan, bold=True)
-        self.print(' %s ' % text)
-
-        self.reset_color()
-        self.print_line(''.join(['-'] * 5))
-
-    def print_title(self, title):
-        star_line = ['*'] * self.width
-        title_start = self.width // 2 - len(title) // 2
-
-        self.set_color(foreground=TColor.Cyan, bold=True)
-        self.print_line(''.join(star_line))
-
-        self.set_color(foreground=TColor.HackerGreen, bold=True)
-
-        self.print(''.join(['*'] * (title_start - 1)))
-        self.print(' ' + title + ' ')
-        self.print_line(''.join(['*'] * (title_start - 1)))
-
-        self.set_color(foreground=TColor.Cyan, bold=True)
-        self.print_line(''.join(star_line))
-
-        self.reset_color()
-        self.print('\n\n')
