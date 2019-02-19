@@ -45,6 +45,7 @@ class KTerm:
         termios.tcsetattr(sys.stdin.fileno(), termios.TCSADRAIN, self._original_settings)
         self._send('39m')
         self._send('49m')
+        self.show_cursor(True)
         self.clear_screen()
 
     def show_cursor(self, flag):
