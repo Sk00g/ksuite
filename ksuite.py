@@ -1,8 +1,7 @@
 import tools.kterm as kterm
 import sys
 from tools.kterm import KTerm, TColor
-from apps.dailyK import DailyK
-from apps.jview import JView
+from apps import *
 
 
 
