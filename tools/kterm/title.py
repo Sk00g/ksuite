@@ -8,6 +8,9 @@ class Title(Control):
 
         self.text = text
 
+    def get_size(self):
+        return self.host.width, 3
+
     def render(self):
         star_line = ['*'] * self.host.width
         title_start = self.host.width // 2 - len(self.text) // 2

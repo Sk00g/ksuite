@@ -1,7 +1,7 @@
 
 
 class Mode:
-    FILE_VIEWER = "File Viewer"
-    NAVIGATE = "Navigate"
-    SEARCH = "Search"
-    EDIT = "Edit"
+    FILE_VIEWER = "FILE VIEWER"
+    NAVIGATE = "NAVIGATE"
+    SEARCH = "SEARCH"
+    EDIT = "EDIT"

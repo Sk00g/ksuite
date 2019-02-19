@@ -1,0 +1,15 @@
+{
+  "status": "INACTIVE",
+  "lastMessage": null,
+  "lastError": {
+    "code": 0,
+    "message": "KeyError: 'address'",
+    "data": null
+  },
+  "serialNumber": null,
+  "webVersion": null,
+  "firmwareVersion": null,
+  "ipAddress": null,
+  "ipPort": null,
+  "serialPort": null
+}

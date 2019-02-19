@@ -1,0 +1,15 @@
+{
+  "status": "INACTIVE",
+  "lastMessage": null,
+  "lastError": {
+    "code": 0,
+    "message": "Unable to connect to serial port USB: [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'",
+    "data": null
+  },
+  "serialNumber": null,
+  "webVersion": null,
+  "firmwareVersion": null,
+  "ipAddress": null,
+  "ipPort": null,
+  "serialPort": "USB"
+}

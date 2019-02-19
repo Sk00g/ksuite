@@ -40,6 +40,16 @@ class Select(Control):
             if self.focused_index in range(len(self.option_list)):
                 self.option_list[self.focused_index]['action']()
 
+    def get_size(self):
+
+        longest_line = 0
+        for option in self.option_list:
+            symbol_width = 1
+            length = len(self.prespace) + symbol_width + 1 + len(option['value'])
+            if length > longest_line:
+                longest_line = length
+
+        return longest_line, len(self.option_list)
 
     def render(self):
         for ind in range(len(self.option_list)):

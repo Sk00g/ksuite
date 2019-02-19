@@ -1,0 +1,15 @@
+{
+  "status": "ERROR",
+  "lastMessage": null,
+  "lastError": {
+    "code": 0,
+    "message": "Initialization error: [Errno 2] No such file or directory: '/sys/class/gpio/gpio44/value'",
+    "data": null
+  },
+  "serialNumber": null,
+  "webVersion": null,
+  "firmwareVersion": null,
+  "ipAddress": null,
+  "ipPort": null,
+  "serialPort": null
+}

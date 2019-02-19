@@ -8,6 +8,9 @@ class Header(Control):
 
         self.text = text
 
+    def get_size(self):
+        return 12 + len(self.text), 1
+
     def render(self):
         self.host.set_color(TColor.White, TColor.Black, True)
 

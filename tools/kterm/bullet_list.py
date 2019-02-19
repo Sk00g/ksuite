@@ -21,6 +21,15 @@ class BulletList(Control):
         self.prespace = kwargs['prespace'] if 'prespace' in kwargs else '  '
         self.tab_matched = kwargs['tab_matched'] if 'tab_matched' in kwargs else True
 
+    def get_size(self):
+        longest_line = 0
+        for point in self.point_list:
+            length = len(self.prespace) + len(self.symbol) + 1 + len(point['key']) + len(point['value'])
+            if length > longest_line:
+                longest_line = length
+
+        return longest_line, len(self.point_list)
+
     def render(self):
         # Find the farthest matching tab stop
         longest_key = 0

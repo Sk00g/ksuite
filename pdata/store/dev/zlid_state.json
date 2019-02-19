@@ -1,0 +1,15 @@
+{
+  "status": "INACTIVE",
+  "lastMessage": null,
+  "lastError": {
+    "code": 0,
+    "message": "Unable to connect to serial port OCOM4: [Errno 2] could not open port /dev/ttyO4: [Errno 2] No such file or directory: '/dev/ttyO4'",
+    "data": null
+  },
+  "serialNumber": null,
+  "webVersion": null,
+  "firmwareVersion": null,
+  "ipAddress": null,
+  "ipPort": null,
+  "serialPort": "OCOM4"
+}

@@ -9,6 +9,12 @@ class TColor:
     White = 7
     HackerGreen = 40
 
+class Direction:
+    LEFT = "LEFT"
+    RIGHT = "RIGHT"
+    DOWN = "DOWN"
+    UP = "UP"
+
 ARROWS = {
     'right': [67, 54, 100],
     'left': [68, 52, 97],
@@ -23,3 +29,4 @@ from .header import Header
 from .title import Title
 from .bullet_list import BulletList
 from .select import Select
+from .textvalue import Textvalue

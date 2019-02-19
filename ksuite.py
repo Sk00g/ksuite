@@ -77,6 +77,8 @@ def run_app_selector():
         term.render()
 
         char = ord(sys.stdin.read(1))
+        if char == 3:
+            clean_exit()
 
 try:
     run_app_selector()
