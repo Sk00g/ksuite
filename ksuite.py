@@ -8,21 +8,27 @@ from apps.jview import JView
 
 # Prepare terminal
 term = KTerm()
+options = None
 
 apps = [
     DailyK(term), JView(term)
 ]
 
-def run_app(app):
-    app.initialize()
-    app.run()
-    app.destruct()
+def run_app():
+    active_app = apps[options.focused_index]
+    active_app.initialize()
+    active_app.run()
+    active_app.destruct()
+
+    run_app_selector()
 
 def clean_exit():
     term.destruct()
     exit(1)
 
-try:
+def run_app_selector():
+    global options
+
     term.initialize(TColor.White, TColor.Black)
     term.clear_screen()
     term.show_cursor(False)
@@ -42,12 +48,12 @@ try:
     kterm.Header(0, 10, "Available Apps")
 
     app_options = []
-    for app in apps:
+    for apption in apps:
         app_options.append({
-            "text": app.query_information()["name"],
-            "action": lambda: run_app(app)
+            "text": apption.query_information()["name"],
+            "action": lambda: run_app()
         })
-    app_options.append({ "text": "Exit", "action": lambda: clean_exit() })
+    app_options.append({"text": "Exit", "action": lambda: clean_exit()})
 
     options = kterm.Select(0, 11, app_options)
     options.focused_index = 0
@@ -60,7 +66,7 @@ try:
         options.receive_input(char)
 
         if options.focused_index != len(options.option_list) - 1:
-            info =  apps[options.focused_index].query_information()
+            info = apps[options.focused_index].query_information()
             app_info["title"].text = "APP NAME: %s" % info["name"]
             app_info["version"].text = "APP VERSION: %s" % info["version"]
             app_info["key"].text = "APP KEY: %s" % info["key"]
@@ -72,6 +78,9 @@ try:
         term.render()
 
         char = ord(sys.stdin.read(1))
+
+try:
+    run_app_selector()
 
 except Exception as err:
     term.destruct()

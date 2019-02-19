@@ -38,12 +38,12 @@ class AppBase:
         return self.info
 
     def initialize(self):
-        return "App under construction"
-
-    def run(self):
         self.term.initialize(self.foreground, self.background)
         self.term.clear_screen()
 
+        return "App under construction"
+
+    def run(self):
         char = 0
         while True:
             force_exit = self.update(char)

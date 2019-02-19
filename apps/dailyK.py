@@ -16,6 +16,7 @@
 import sys
 import json
 import tools.kterm as term
+from tools.kclient import KClient
 from apps.app_base import AppBase
 from datetime import datetime
 
@@ -34,21 +35,21 @@ class DailyK(AppBase):
         self.options = None
 
     def display_weather(self):
-        # try:
-        #     with open('pdata/daily/api.json', 'r') as file:
-        #         api_data = json.load(file)['weather']
-        #     data = KClient.get_data(
-        #         api_data['host'], api_data['url'], cityId=api_data['cityId'], key=api_data['key'])
+        try:
+            with open('pdata/daily/api.json', 'r') as file:
+                api_data = json.load(file)['weather']
+            data = KClient.get_data(
+                api_data['host'], api_data['url'], cityId=api_data['cityId'], key=api_data['key'])
 
-        #     with open('pdata/daily/lastWeatherRead.json', 'w') as file:
-        #         json.dump(data, file)
-        # except Exception as err:
-        #     self.term.print_line('Querying weather data failed: %s' % str(err))
-        #     return
+            with open('pdata/daily/lastWeatherRead.json', 'w') as file:
+                json.dump(data, file)
+        except Exception as err:
+            self.term.print_line('Querying weather data failed: %s' % str(err))
+            return
 
         # Uncomment this if you don't want to actually call API
-        with open('pdata/daily/lastWeatherRead.json', 'r') as file:
-            data = json.load(file)
+        # with open('pdata/daily/lastWeatherRead.json', 'r') as file:
+        #     data = json.load(file)
 
         # make into collapsable section?
         term.Header(0, 5, 'Weather')
@@ -75,6 +76,8 @@ class DailyK(AppBase):
         self.title.text = new_title
 
     def initialize(self):
+        super().initialize()
+
         self.title = term.Title(0, 0, "Daily K")
 
         self.display_weather()

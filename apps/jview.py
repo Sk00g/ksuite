@@ -13,9 +13,12 @@ class JView(AppBase):
         super().__init__(APP_NAME, APP_VERSION, APP_KEY, APP_DESCRIPTION, terminal)
 
     def initialize(self):
-        term.Title(0, 0, "JSON Viewier")
+        super().initialize()
+        self.term.show_cursor(True)
 
-        term.Textblock(0, 2, "Hello my name is reginald and I like cake")
+        term.Title(0, 0, "JSON Viewer")
+
+        term.Textblock(0, 5, "Hello my name is reginald and I like cake")
 
         return True
 
