@@ -22,11 +22,13 @@ from datetime import datetime
 APP_NAME = "Daily K"
 APP_VERSION = "V1.01.190204"
 APP_KEY = "daily"
+APP_DESCRIPTION = "Interesting and helpful daily information, all in one place"
+
 
 
 class DailyK(AppBase):
     def __init__(self, terminal):
-        super().__init__(APP_NAME, APP_VERSION, APP_KEY, terminal)
+        super().__init__(APP_NAME, APP_VERSION, APP_KEY, APP_DESCRIPTION, terminal)
 
         self.title = None
         self.options = None

@@ -17,12 +17,13 @@ DEFAULT_BACKGROUND = TColor.Black
 DEFAULT_PROMPT = "Enter Input: "
 
 class AppBase:
-    def __init__(self, name, version, key, term: KTerm):
+    def __init__(self, name, version, key, description, term: KTerm):
         self.term = term
         self.info = {
             "name": name,
             "version": version,
-            "key": key
+            "key": key,
+            "description": description
         }
 
         # Used for terminal colors

@@ -25,7 +25,7 @@ class KTerm:
         self.clear_screen()
         self.reset_color()
 
-        for ctrl in self.control_list:
+        for ctrl in [c for c in self.control_list if c.visible]:
             self.set_cursor(ctrl.start[0], ctrl.start[1])
             ctrl.render()
 
@@ -35,6 +35,7 @@ class KTerm:
         pass
 
     def initialize(self, default_foreground, default_background):
+        self.control_list = []
         self._default_foreground = default_foreground
         self._default_background = default_background
         self.reset_color()

@@ -7,6 +7,7 @@ class Control:
         self.start = row, column
 
         self.width, self.height = 0, 0
+        self.visible = True
 
         self.host = Control.Host
         self.host.control_list.append(self)
