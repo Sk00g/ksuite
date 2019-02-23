@@ -2,8 +2,10 @@ import tools.kterm as kterm
 import sys
 from tools.kterm import KTerm, TColor
 from apps import *
+import colorama
 
-
+# Ensure color and cursor commands also work on Windows
+colorama.init()
 
 # Prepare terminal
 term = KTerm()
