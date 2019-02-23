@@ -25,7 +25,7 @@ def run_app():
 
 def clean_exit():
     term.destruct()
-    exit(1)
+    sys.exit(0)
 
 def run_app_selector():
     global options
